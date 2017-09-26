@@ -1,4 +1,4 @@
-# STOCK
+STOCK
 1．建立一個STOCK data base
   
   Ａ.建立一個STOCK table
@@ -20,25 +20,25 @@
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
       
 
-C. 建立索引
+  C. 建立索引
     --
     -- 資料表索引 `STOCK`
     --
     ALTER TABLE `STOCK`
       ADD PRIMARY KEY (`STOCK_ID`);
       
-  --
-  -- 資料表索引 `STOCK_DAILY_RECORD`
-  --
-  ALTER TABLE `STOCK_DAILY_RECORD`
-    ADD PRIMARY KEY (`DAILY_RECORD_ID`),
-    ADD KEY `STOCK_ID` (`STOCK_ID`);
+    --
+    -- 資料表索引 `STOCK_DAILY_RECORD`
+    --
+    ALTER TABLE `STOCK_DAILY_RECORD`
+      ADD PRIMARY KEY (`DAILY_RECORD_ID`),
+      ADD KEY `STOCK_ID` (`STOCK_ID`);
 
-  --    
+    --    
       
-D. 加foreign key
-ALTER TABLE `STOCK_DAILY_RECORD`
-  ADD CONSTRAINT `stock_daily_record_ibfk_1` FOREIGN KEY (`STOCK_ID`) REFERENCES `STOCK` (`STOCK_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+   D. 加foreign key
+    ALTER TABLE `STOCK_DAILY_RECORD`
+    ADD CONSTRAINT `stock_daily_record_ibfk_1` FOREIGN KEY (`STOCK_ID`) REFERENCES `STOCK` (`STOCK_ID`) ON DELETE CASCADE ON     UPDATE CASCADE;
       
       
       
