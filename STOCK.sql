@@ -1,0 +1,115 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- 主機: localhost
+-- 產生時間： 2017 年 09 月 26 日 07:21
+-- 伺服器版本: 5.7.19-enterprise-commercial-advanced
+-- PHP 版本： 5.6.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- 資料庫： `Stock`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `STOCK`
+--
+
+CREATE TABLE `STOCK` (
+  `STOCK_ID` int(11) NOT NULL,
+  `STOCK_CODE` varchar(32) COLLATE utf8_bin NOT NULL,
+  `STOCK_NAME` varchar(32) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 資料表的匯出資料 `STOCK`
+--
+
+INSERT INTO `STOCK` (`STOCK_ID`, `STOCK_CODE`, `STOCK_NAME`) VALUES
+(1, '7052', 'hTC'),
+(2, '7052', 'hTC');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `STOCK_DAILY_RECORD`
+--
+
+CREATE TABLE `STOCK_DAILY_RECORD` (
+  `DAILY_RECORD_ID` int(11) NOT NULL,
+  `PRICE_OPEN` float NOT NULL,
+  `PRICE_CLOSE` float NOT NULL,
+  `PRICE_CHANGE` float NOT NULL,
+  `VOLUME` int(11) NOT NULL,
+  `DATE` date NOT NULL,
+  `STOCK_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 資料表的匯出資料 `STOCK_DAILY_RECORD`
+--
+
+INSERT INTO `STOCK_DAILY_RECORD` (`DAILY_RECORD_ID`, `PRICE_OPEN`, `PRICE_CLOSE`, `PRICE_CHANGE`, `VOLUME`, `DATE`, `STOCK_ID`) VALUES
+(1, 1.2, 1.1, 10, 300, '2017-09-26', 1),
+(2, 2.2, 2.1, 10.2, 600, '2017-09-26', 2);
+
+--
+-- 已匯出資料表的索引
+--
+
+--
+-- 資料表索引 `STOCK`
+--
+ALTER TABLE `STOCK`
+  ADD PRIMARY KEY (`STOCK_ID`);
+
+--
+-- 資料表索引 `STOCK_DAILY_RECORD`
+--
+ALTER TABLE `STOCK_DAILY_RECORD`
+  ADD PRIMARY KEY (`DAILY_RECORD_ID`),
+  ADD KEY `STOCK_ID` (`STOCK_ID`);
+
+--
+-- 在匯出的資料表使用 AUTO_INCREMENT
+--
+
+--
+-- 使用資料表 AUTO_INCREMENT `STOCK`
+--
+ALTER TABLE `STOCK`
+  MODIFY `STOCK_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 使用資料表 AUTO_INCREMENT `STOCK_DAILY_RECORD`
+--
+ALTER TABLE `STOCK_DAILY_RECORD`
+  MODIFY `DAILY_RECORD_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 已匯出資料表的限制(Constraint)
+--
+
+--
+-- 資料表的 Constraints `STOCK_DAILY_RECORD`
+--
+ALTER TABLE `STOCK_DAILY_RECORD`
+  ADD CONSTRAINT `stock_daily_record_ibfk_1` FOREIGN KEY (`STOCK_ID`) REFERENCES `STOCK` (`STOCK_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
